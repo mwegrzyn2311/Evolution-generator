@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c144faa7-62a6-4794-9521-ef352a41c839" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="package.json" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1SVYvvXiR93KEtDBH4cOy5SFjga" />
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/gson-master.zip!/" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.EvolutionGeneratorFirst">
+    <configuration name="EvolutionGeneratorFirst" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="first.World" />
+      <module name="TestingIJ" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Lab4" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="first.World" />
+      <module name="TestingIJ" />
+      <option name="PROGRAM_PARAMETERS" value="f b r l f f r r f f f f f f f f" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestingLab3" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="first.World" />
+      <module name="TestingIJ" />
+      <option name="PROGRAM_PARAMETERS" value="f kl f l" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in TestingIJ" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TestingIJ" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Lab4" type="JUnit" factoryName="JUnit">
+      <module name="TestingIJ" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="IntegralTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Lab4" />
+      <item itemvalue="Application.EvolutionGeneratorFirst" />
+      <item itemvalue="Application.TestingLab3" />
+      <item itemvalue="JUnit.Lab4" />
+      <item itemvalue="JUnit.All in TestingIJ" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in TestingIJ" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c144faa7-62a6-4794-9521-ef352a41c839" name="Default Changelist" comment="" />
+      <created>1571650464105</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1571650464105</updated>
+      <workItem from="1571650468199" duration="12200000" />
+      <workItem from="1571730473035" duration="2529000" />
+      <workItem from="1571756709139" duration="96000" />
+      <workItem from="1571846006303" duration="6380000" />
+      <workItem from="1572115392843" duration="10366000" />
+      <workItem from="1572182645010" duration="8115000" />
+      <workItem from="1572454441724" duration="5194000" />
+      <workItem from="1572617966963" duration="1330000" />
+      <workItem from="1572989414313" duration="808000" />
+      <workItem from="1573039030879" duration="7956000" />
+      <workItem from="1573122173859" duration="804000" />
+      <workItem from="1573595514732" duration="749000" />
+      <workItem from="1573664152724" duration="5053000" />
+      <workItem from="1574168068973" duration="7000" />
+      <workItem from="1574186858359" duration="5858000" />
+      <workItem from="1574267679195" duration="89000" />
+      <workItem from="1574270089377" duration="3445000" />
+      <workItem from="1574287606435" duration="3546000" />
+      <workItem from="1574379080927" duration="2000" />
+      <workItem from="1574522836200" duration="10752000" />
+      <workItem from="1574604618120" duration="16426000" />
+      <workItem from="1574640315923" duration="5000" />
+      <workItem from="1574855388478" duration="9437000" />
+      <workItem from="1575073310700" duration="9256000" />
+      <workItem from="1575129665894" duration="530000" />
+      <workItem from="1575478530669" duration="16000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>
