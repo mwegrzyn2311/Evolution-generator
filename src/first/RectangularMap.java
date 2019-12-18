@@ -5,29 +5,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RectangularMap{
-    //TODO: Check if it is better to change grass spawning function after exceeding, say
-    //TODO: 90% of the area or to change it the moment it fails to spawn, say area*3 times
-    //TODO: to randomly choose row, and then take first empty column
-    private ArrayList<Animals> animals = new ArrayList<>();
+    public ArrayList<Animals> animals = new ArrayList<>();
     private Map<Vector2d, ArrayList<Animals>> animalz=new HashMap<>();
-    private Map<Vector2d, Grass> grass=new HashMap<>();
+    public Map<Vector2d, Grass> grass=new HashMap<>();
     private MapVisualizer map=new MapVisualizer(this);
     private int plantEnergy;
     private int moveEnergy;
-    private int height;
-    private int width;
+    public int height;
+    public int width;
     private int jungleHeight;
     private int jungleWidth;
     private Vector2d jungleLowerLeft;
     private Vector2d jungleUpperRight;
     private int jungleArea;
     private int outsideJungleArea;
-    private long animalCounter=0;
-    //private long averageDeathAge = 0;
-    private long deadAnimals = 0;
     private int day=0;
+    private DataCollector data;
 
     public RectangularMap(int width, int height, int moveEnergy, int plantEnergy, double jungleRatio){
+        data = new DataCollector(this);
         this.width = width;
         this.height = height;
         this.plantEnergy = plantEnergy;
@@ -57,12 +53,11 @@ public class RectangularMap{
     }
 
     public void placeAnimal(Animals animal){
-        this.animalCounter++;
-        animal.setID(this.animalCounter);
+        animal.setID(this.animals.size());
         Vector2d position=animal.getPosition();
         this.animals.add(animal);
         addAnimalToMap(animal, position);
-
+        data.updateAnimalsGeneStats(animal);
     }
 
     private void removeTheDead(){
@@ -72,21 +67,12 @@ public class RectangularMap{
         }
         for(int i=animals.size()-1;i>=0;i--){
             if(animals.get(i).energy <= 0) {
-
-                deadAnimals++;
-                //averageDeathAge=(this.averageDeathAge*(deadAnimals-1)+animals.get(i).age)/(deadAnimals);
-
                 Animals deadAnimal = animals.get(i);
                 Vector2d pos=deadAnimal.getPosition();
-                // int sizeBefore = animalz.get(pos).size();
                 animalz.get(pos).remove(deadAnimal);
-                /*
-                int sizeAfter = animalz.get(pos).size();
-                if(sizeBefore != sizeAfter+1){
-                    throw new IllegalArgumentException("There were "+sizeBefore+" animals and now there are "+sizeAfter);
-                }
-                 */
                 animals.remove(deadAnimal);
+                this.data.deadAnimalsCount++;
+                this.data.summaryDeathAge += deadAnimal.age;
             }
         }
     }
@@ -254,6 +240,8 @@ public class RectangularMap{
         Genotype genotype = new Genotype(mother.getGenotype(), father.getGenotype());
         Vector2d position = findEmptyPosition(mother.getPosition());
         this.placeAnimal(new Animals(this, position, genotype, babyEnergy, mother.startEnergy));
+        mother.childrenCounter++;
+        father.childrenCounter++;
     }
 
     private void breedAll(){
@@ -339,42 +327,13 @@ public class RectangularMap{
     }
 
     private void dayCycle(){
-        //checkLists();
-        day++;
+        this.day++;
         spawnGrass();
         run();
         eat();
         breedAll();
         removeTheDead();
-        checkMap();
         //System.out.println(this.toString());
-        correct();
-    }
-
-    private void correct(){
-        int sum = animalsInMapSum();
-        if(sum!=animals.size()){
-            throw new IllegalArgumentException("There are "+animals.size()+" animals, but "+sum+" animals at map");
-        }
-    }
-    private int animalsInMapSum(){
-        int sum=0;
-        for(int i=0; i<this.width;i++){
-            for(int j=0; j<this.height;j++){
-                Vector2d position = new Vector2d(i,j);
-                if(animalz.get(position) != null)
-                    sum+=animalz.get(position).size();
-            }
-        }
-        return sum;
-    }
-    public void checkMap(){
-        for(Animals animal: animals){
-            Vector2d pos = animal.getPosition();
-            if(!animalz.get(pos).contains(animal)){
-                System.out.println("Animal "+animal.getID()+" should be at");
-            }
-        }
     }
 
     public String toString(){
@@ -391,11 +350,6 @@ public class RectangularMap{
         return (animalz.get(position)!=null && animalz.get(position).size()!=0);
     }
 
-    boolean objectIsInMap(IMapElement object){
-        Vector2d pos=object.getPosition();
-        return (pos.x < width && pos.y < height && pos.x >=0 && pos.y >= 0);
-    }
-
     Object objectAt(Vector2d position){
         //returns grass or just one of animals in the tile (for MapVisualizer to work)
         if(containsAnimal(position))
@@ -406,38 +360,4 @@ public class RectangularMap{
         else return null;
     }
 
-    public void checkLists(){
-        System.out.println("Total animals: "+animalCounter+", Dead animals: "+deadAnimals+", Living animals: "+animals.size());
-        for(Animals animal : animals){
-            System.out.print(animal.getID()+", ");
-        }
-        System.out.println("");
-        for(int i=0; i<width;i++){
-            for(int j=0; j<height; j++){
-                Vector2d position = new Vector2d(i, j);
-                ArrayList<Animals> animalsList = animalz.get(position);
-                if(animalsList != null){
-                    for(Animals tmp : animalsList) {
-                            System.out.print(tmp.getID()+", ");
-                    }
-                }
-            }
-        }
-        System.out.println();
-    }
-
-    public void printAnimalsAge(){
-        System.out.println("Still living animals' ages:");
-        for(Animals animal : animals){
-            if(animal!=animals.get(0))
-                System.out.print(", "+animal.age);
-            else
-                System.out.print(animal.age);
-        }
-        System.out.println(" ");
-        /*
-        System.out.println("A total of "+deadAnimals+" have died here since the beggining");
-        System.out.println("Average animals' dead age: " + averageDeathAge);
-        */
-    }
 }

@@ -11,6 +11,7 @@ public class Animals extends abstractMapElement{
     public int age=0;//age tells us how many days has animal survived
     private Genotype genotype;
     private long ID;
+    public int childrenCounter=0;
 
     Animals(RectangularMap map, Vector2d initialPosition, int startingEnergy) {
         super(map, initialPosition);
