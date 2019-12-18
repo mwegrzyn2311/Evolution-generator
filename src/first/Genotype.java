@@ -12,6 +12,7 @@ public class Genotype {
             }
         }
     }
+
     public Genotype(Genotype first, Genotype second){
         //Randomly chooses exactly 16 genes from first parent and the same ammount from the second one
         this.values=new int[32];
@@ -36,13 +37,17 @@ public class Genotype {
         for(i=y;i<32;i++){
             this.values[i]=first.values[i];
         }
+
+        int randomGeneChance = 5;
+        int random = (int)(Math.random()*100);
+        if(random < randomGeneChance){
+            int gene = (int)(Math.random()*32);
+            this.values[gene] = (int)(Math.random()*8);
+        }
     }
 
     public int turnAnimal(){
         int i=(int) (Math.random()*32);
-        if(i < 0 || i > 31){
-            throw new IllegalArgumentException("turnAnimal() needs to be fixed");
-        }
         return this.values[i];
     }
 }

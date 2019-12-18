@@ -10,7 +10,7 @@ public class Animals extends abstractMapElement{
     public int breedEnergyRequired;
     public int age=0;//age tells us how many days has animal survived
     private Genotype genotype;
-
+    private long ID;
 
     Animals(RectangularMap map, Vector2d initialPosition, int startingEnergy) {
         super(map, initialPosition);
@@ -32,30 +32,11 @@ public class Animals extends abstractMapElement{
     public void move(){
         int turn=genotype.turnAnimal();
         for(int j=0; j < turn; j++){
-            dir=dir.next();
+            this.dir=this.dir.next();
         }
         Vector2d move=this.dir.toOneMoveVector();
         this.position=this.position.add(move);
-        this.position=map.backIntoMap(this.position);
-
-        /*
-        switch(this.dir){
-            case RIGHT: dir=dir.next(); break;
-            case LEFT: dir=dir.previous(); break;
-            case FORWARD: Vector2d added=dir.toUnitVector();
-                added=added.add(coordinates);
-                if(map.canMoveTo(added))
-                    coordinates = added;
-                break;
-            case BACKWARD: Vector2d subbed=dir.toUnitVector();
-                subbed=coordinates.subtract(subbed);
-                if(map.canMoveTo(subbed))
-                    coordinates = subbed;
-                break;
-            default: System.out.println("Unexpected error in class Animal in method move");
-        }
-
-         */
+        this.position=this.map.backIntoMap(this.position);
     }
 
     public MapDirection getDir(){return this.dir;}
@@ -74,7 +55,15 @@ public class Animals extends abstractMapElement{
         //String pos="Zwierzę jest we współrzędnych (";
         //pos+=Integer.toString(coordinates.x)+","+Integer.toString(coordinates.y)+"), kierując się na "+dir.toString();
         //return pos;
-        return dir.toShortString();
+        // return dir.toShortString();
+        return "A";
+    }
+
+    public void setID(long ID){
+        this.ID = ID;
+    }
+    public long getID(){
+        return this.ID;
     }
 
 }

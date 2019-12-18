@@ -10,6 +10,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" scope="TEST" name="junit:junit:4.12" level="project" />
     <orderEntry type="library" name="junit:junit:4.12" level="project" />
-    <orderEntry type="library" name="java" level="project" />
+    <orderEntry type="library" name="json-20190722" level="project" />
   </component>
 </module>

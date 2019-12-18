@@ -78,31 +78,6 @@ public enum MapDirection{
         return res;
     }
 
-    /*Alternate with shorter but less comprehensible
-
-    public MapDirection next(){
-        return getMapDirection(NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST, NORTH);
-    }
-    public MapDirection previous(){
-        return getMapDirection(NORTH_WEST, NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST);
-    }
-
-    private MapDirection getMapDirection(MapDirection northWest, MapDirection north, MapDirection northEast, MapDirection east, MapDirection southEast, MapDirection south, MapDirection southWest, MapDirection west) {
-        switch(this){
-            case NORTH: return northWest;
-            case NORTH_EAST: return north;
-            case EAST: return northEast;
-            case SOUTH_EAST: return east;
-            case SOUTH: return southEast;
-            case SOUTH_WEST: return south;
-            case WEST: return southWest;
-            case NORTH_WEST: return west;
-            default: return null;
-        }
-    }
-
-    */
-
     public Vector2d toOneMoveVector(){
         switch(this){
             case NORTH: return new Vector2d(0,1);
