@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class World {
     public static void main(String[] args) {
@@ -54,30 +55,27 @@ public class World {
                 System.out.println("Is it even a jungle now when it takes over 49% of the world, though?");
             }
 
-            int animalsCount = 12;
-            RectangularMap map = new RectangularMap(width, height, moveEnergy, plantEnergy, jungleRatio);
-            spawnXRandomAnimals(map, animalsCount, startEnergy, width, height);
-            GUI gui = new GUI(map);
-            System.out.println(map.toString());
-            for(int i=0; i < 20; i++){
-                Scanner input = new Scanner(System.in);
-                int number = input.nextInt();
-                map.runXDays(40000);
-                System.out.println(map.toString());
-            }
-        } catch(IllegalArgumentException | IOException ex){
+            int animalsCount = 20;
+            RectangularMap map = new RectangularMap(width, height, startEnergy, moveEnergy, plantEnergy, jungleRatio);
+            RectangularMap map1 = new RectangularMap(width, height, startEnergy, moveEnergy, plantEnergy, jungleRatio);
+            spawnXRandomAnimals(map, map1, animalsCount, startEnergy, width, height);
+            GUI gui = new GUI(map, map1);
+        } catch(IllegalArgumentException | IOException | InterruptedException ex){
             System.out.println(ex);
         }
     }
 
-    private static void spawnXRandomAnimals(RectangularMap map, int animalsCounter, int startEnergy, int width, int height){
+    private static void spawnXRandomAnimals(RectangularMap map, RectangularMap map1,  int animalsCounter, int startEnergy, int width, int height){
         for(int i=0; i<animalsCounter; i++){
             int x, y;
             do{
                 x=(int)(Math.random()*width);
                 y=(int)(Math.random()*height);
             }while(map.containsSomething(new Vector2d(x, y)));
-            map.placeAnimal(new Animals(map, new Vector2d(x, y), startEnergy));
+            Animals animal = new Animals(map, new Vector2d(x, y), startEnergy);
+            Animals animal1 = new Animals(map1, new Vector2d(x, y), startEnergy);
+            map.placeAnimal(animal);
+            map1.placeAnimal(animal1);
         }
     }
 

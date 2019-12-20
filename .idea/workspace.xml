@@ -2,17 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c144faa7-62a6-4794-9521-ef352a41c839" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/first/GUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/first/DataPrinter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/first/Empty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/first/GUIMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestingIJ/first/Animals.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TestingIJ/first/Animals.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestingIJ/first/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TestingIJ/first/GUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TestingIJ/first/Genotype.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TestingIJ/first/Genotype.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TestingIJ/first/RectangularMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TestingIJ/first/RectangularMap.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TestingIJ/first/World.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TestingIJ/first/World.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/first/Animals.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/first/Animals.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/first/DataCollector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/first/DataCollector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/first/Genotype.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/first/Genotype.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestingIJ/first/parameters.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TestingIJ/first/parameters.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/first/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/first/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/first/RectangularMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/first/RectangularMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/first/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/first/World.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/first/parameters.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/first/parameters.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +45,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ExternalLibraries/json-20190722.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../evolution-1.0.0-beta.1" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -161,7 +163,9 @@
       <workItem from="1576071894673" duration="127000" />
       <workItem from="1576083323178" duration="14188000" />
       <workItem from="1576536672279" duration="15225000" />
-      <workItem from="1576680183406" duration="8348000" />
+      <workItem from="1576680183406" duration="19078000" />
+      <workItem from="1576766682837" duration="655000" />
+      <workItem from="1576876416061" duration="9322000" />
     </task>
     <servers />
   </component>

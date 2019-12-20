@@ -9,6 +9,7 @@ public class RectangularMap{
     private Map<Vector2d, ArrayList<Animals>> animalz=new HashMap<>();
     public Map<Vector2d, Grass> grass=new HashMap<>();
     private MapVisualizer map=new MapVisualizer(this);
+    public int startEnergy;
     private int plantEnergy;
     private int moveEnergy;
     public int height;
@@ -20,10 +21,11 @@ public class RectangularMap{
     private int jungleArea;
     private int outsideJungleArea;
     private int day=0;
-    private DataCollector data;
+    public DataCollector data;
 
-    public RectangularMap(int width, int height, int moveEnergy, int plantEnergy, double jungleRatio){
+    public RectangularMap(int width, int height, int startEnergy, int moveEnergy, int plantEnergy, double jungleRatio){
         data = new DataCollector(this);
+        this.startEnergy = startEnergy;
         this.width = width;
         this.height = height;
         this.plantEnergy = plantEnergy;
@@ -343,11 +345,23 @@ public class RectangularMap{
     boolean containsSomething(Vector2d position){
         return ((animalz.get(position)!=null && animalz.get(position).size() != 0)|| grass.containsKey(position));
     }
-    private boolean containsGrass(Vector2d position){
+    public boolean containsGrass(Vector2d position){
         return (grass.containsKey(position));
     }
-    private boolean containsAnimal(Vector2d position){
+    public boolean containsAnimal(Vector2d position){
         return (animalz.get(position)!=null && animalz.get(position).size()!=0);
+    }
+
+    public int getMaxEneFromTile(Vector2d position){
+        ArrayList<Animals> animals = animalz.get(position);
+        int ene = 0;
+        if(animals == null)
+            return ene;
+        for(Animals animal: animals){
+            if(animal.energy > ene)
+                ene = animal.energy;
+        }
+        return ene;
     }
 
     Object objectAt(Vector2d position){
