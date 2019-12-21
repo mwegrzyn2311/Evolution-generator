@@ -23,10 +23,10 @@ public class GUIMap extends JPanel
         int preferredHeight = NUM_ROWS * PREFERRED_GRID_SIZE_PIXELS;
         setPreferredSize(new Dimension(preferredWidth, preferredHeight));
 
-        Update();
+        updateMap();
     }
 
-    public void Update(){
+    public void updateMap(){
         for(int i=0; i  < NUM_COLS; i++){
             for(int j=0; j < NUM_ROWS; j++){
                 this.terrainGrid[i][j] = getColorByTile(new Vector2d(i, NUM_ROWS-j-1));

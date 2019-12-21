@@ -1,6 +1,7 @@
 package first;
 import org.json.*;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -59,7 +60,20 @@ public class World {
             RectangularMap map = new RectangularMap(width, height, startEnergy, moveEnergy, plantEnergy, jungleRatio);
             RectangularMap map1 = new RectangularMap(width, height, startEnergy, moveEnergy, plantEnergy, jungleRatio);
             spawnXRandomAnimals(map, map1, animalsCount, startEnergy, width, height);
+
             GUI gui = new GUI(map, map1);
+
+            /*
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        GUI gui = new GUI(map, map1);
+                    } catch (InterruptedException | IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+             */
         } catch(IllegalArgumentException | IOException | InterruptedException ex){
             System.out.println(ex);
         }
