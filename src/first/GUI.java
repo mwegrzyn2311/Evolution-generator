@@ -8,6 +8,8 @@ import java.io.IOException;
 public class GUI extends JFrame{
     private RectangularMap map;
     private RectangularMap map1;
+    public int delay = 200;
+
     public GUI(RectangularMap map, RectangularMap map1) throws InterruptedException, IOException {
         super("Generator ewolucyjny");
         this.map = map;
@@ -16,28 +18,39 @@ public class GUI extends JFrame{
         this.setLayout(new BorderLayout(4,4));
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setIconImage((new ImageIcon(this.getClass().getResource("/images/icon.png"))).getImage());
         //Creating map panels
         GUIMap showedMap = new GUIMap(this.map);
         GUIMap showedMap1 = new GUIMap(this.map1);
-        DataPrinter dataPanel = new DataPrinter(map.data, map1.data, map.height){
+        this.add(showedMap, BorderLayout.WEST);
+        this.add(showedMap1, BorderLayout.CENTER);
+        //Creating statistics panel
+        DataPrinter dataPanel = new DataPrinter(map.data, map1.data, this){
             @Override
             public Dimension getPreferredSize() {
                 return new Dimension(230, Math.max(map.height * preferredPixelSize, 300));
             }
 
         };
+        this.add(dataPanel, BorderLayout.EAST);
+        //Panel for north border
         Empty empty = new Empty();
         this.add(empty, BorderLayout.NORTH);
-        this.add(showedMap, BorderLayout.WEST);
-        this.add(showedMap1, BorderLayout.CENTER);
-        this.add(dataPanel, BorderLayout.EAST);
+        //Panel with buttons and basically all functionality
+        UserPanel userPanel = new UserPanel(this);
+        this.add(userPanel, BorderLayout.SOUTH);
+        // Now everything is set, we can finally show the GUI to user
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        for(int i=0; i < 10000; i++){
+        while(true){
             map.runXDays(1);
             map1.runXDays(1);
-            Thread.sleep(100);
+            Thread.sleep(delay);
+            /*
+            showedMap.Update();
+            showedMap1.Update();
+            */
 
             showedMap = new GUIMap(this.map);
             showedMap1 = new GUIMap(this.map1);
@@ -46,46 +59,7 @@ public class GUI extends JFrame{
             this.add(showedMap1, BorderLayout.CENTER);
             this.setVisible(true);
         }
-
     }
-    /*
-    public GUI(RectangularMap map, RectangularMap map1) throws InterruptedException {
-        this.map = map;
-        this.map1 = map1;
-        //Create the frame
-        frame = new JFrame("Generator ewolucyjny");
-        frame.setLayout(new BorderLayout(5,5));
-        //frame.setSize(650, 500);
-        frame.setResizable(false);
-        //Creating button for starting and stopping the simulation
-        GUIMap showedMap = new GUIMap(map);
-        GUIMap showedMap1 = new GUIMap(map1);
-        frame.add(showedMap, BorderLayout.WEST);
-        frame.add(showedMap1, BorderLayout.CENTER);
-        //addSimulationButtons();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        for(int i=0; i < 10000; i++){
-            map.runXDays(1);
-            map1.runXDays(1);
-            Thread.sleep(100);
-
-            //showedMap = new GUIMap(map);
-            //showedMap1 = new GUIMap(map1);
-            //frame.add(showedMap);
-            //frame.add(showedMap1);
-
-            showedMap = new GUIMap(map);
-            showedMap1 = new GUIMap(map1);
-            frame.add(showedMap, BorderLayout.WEST);
-            frame.add(showedMap1, BorderLayout.CENTER);
-            frame.setVisible(true);
-        }
-
-    }
-    */
     public void addSimulationButtons(){
         JPanel panel = new JPanel();
         JButton start = new JButton(">");

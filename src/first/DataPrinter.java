@@ -12,7 +12,10 @@ public class DataPrinter extends JPanel {
     private DataCollector data;
     private DataCollector data1;
     int preferredPixelSize = 13;
-    public DataPrinter(DataCollector data, DataCollector data1, int height) throws IOException {
+    private GUI gui;
+
+    public DataPrinter(DataCollector data, DataCollector data1, GUI gui) throws IOException {
+        this.gui = gui;
         this.data = data;
         this.data1=data1;
         this.setLayout(new BorderLayout(0,0));
@@ -30,15 +33,25 @@ public class DataPrinter extends JPanel {
         this.add(this.textArea1, BorderLayout.CENTER);
         this.Update();
     }
-   public void Update(){
-        //The first map data...
-        String info = "<b>Mapa 1:</b><br>";
-        info += someData(data);
-        this.textArea.setText(info);
-        //...and the second map data
-        info = "<br><br><b>Mapa 2:</b><br>";
-        info += someData(data1);
-        this.textArea1.setText(info);
+    public void Update(){
+        UpdateData(textArea, textArea1);
+    }
+   public void UpdateData(JEditorPane textArea, JEditorPane textArea1){
+        SwingUtilities.invokeLater(new Runnable(){
+            public void run(){
+                //The first map data...
+                String info = "<b>Mapa 1:</b><br>";
+                info += someData(data);
+                textArea.setText(info);
+                //...and the second map data
+                info = "<br><br><b>Mapa 2:</b><br>";
+                info += someData(data1);
+                textArea1.setText(info);
+
+                // textArea1.setText(info+"<br><br>Delay = "+gui.delay);
+            }
+        });
+
     }
     private String someData(DataCollector data){
         String info="";

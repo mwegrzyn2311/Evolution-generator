@@ -19,15 +19,20 @@ public class GUIMap extends JPanel
         this.NUM_ROWS = map.height;
         this.startEne = map.startEnergy;
         terrainGrid = new Color[NUM_COLS][NUM_ROWS];
+        int preferredWidth = NUM_COLS * PREFERRED_GRID_SIZE_PIXELS;
+        int preferredHeight = NUM_ROWS * PREFERRED_GRID_SIZE_PIXELS;
+        setPreferredSize(new Dimension(preferredWidth, preferredHeight));
+
+        Update();
+    }
+
+    public void Update(){
         for(int i=0; i  < NUM_COLS; i++){
             for(int j=0; j < NUM_ROWS; j++){
                 this.terrainGrid[i][j] = getColorByTile(new Vector2d(i, NUM_ROWS-j-1));
             }
         }
-        int preferredWidth = NUM_COLS * PREFERRED_GRID_SIZE_PIXELS;
-        int preferredHeight = NUM_ROWS * PREFERRED_GRID_SIZE_PIXELS;
-        setPreferredSize(new Dimension(preferredWidth, preferredHeight));
-        }
+    }
 
     @Override
     public void paintComponent(Graphics g) {
@@ -53,21 +58,27 @@ public class GUIMap extends JPanel
 
     public Color getColorByTile(Vector2d position){
         if(this.map.containsGrass(position))
-            return new Color(229, 1, 164);
+            return new Color(93, 247, 65);
         if(this.map.containsAnimal(position))
             return getColorByEnergy(map.getMaxEneFromTile(position));
         return new Color(255, 255, 255);
     }
     public Color getColorByEnergy(int energy){
-        if(energy < startEne/4){
-            return new Color(0, 0, 0);
-        }else if(energy < startEne/2){
-            return new Color(156, 0, 8);
-        }else if(energy < startEne*0.75){
-            return new Color(203, 192, 2);
-        }else if(energy < startEne *1.5){
-            return new Color(64, 214, 41);
-        }else
-            return new Color(39, 123, 21);
+        if(energy < startEne * 0.15)
+            return new Color(6, 0, 159);
+        else if(energy < startEne * 0.3)
+            return new Color(52, 108, 189);
+        else if(energy < startEne*0.5)
+            return new Color(153, 176, 203);
+        else if(energy < startEne *0.75)
+            return new Color(255, 244, 91);
+        else if(energy < startEne * 1.25)
+            return new Color(255, 227, 16);
+        else if(energy < startEne * 1.75)
+            return new Color (255, 165,0);
+        else if(energy < startEne * 2.15)
+            return new Color(255, 118, 12);
+        else
+            return new Color(243,0,0);
     }
 }
