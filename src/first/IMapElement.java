@@ -11,11 +11,11 @@ public interface IMapElement{
      *
      * @return position of the element as Vector2d
      */
-    public Vector2d getPosition();
+    Vector2d getPosition();
     /**
      * Return string form of the object
      *
      * @return appropriate string depending on the object
      */
-    public String toString();
+    String toString();
 }

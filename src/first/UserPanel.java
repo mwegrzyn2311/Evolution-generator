@@ -121,8 +121,12 @@ public class UserPanel extends JPanel {
             }
         });
         showDominant.setPreferredSize(new Dimension(64,42));
+        showDominant.setText("Mark D");
+        showDominant.setMargin(new Insets(0,0,0,0));
 
         genotypeText = new JEditorPane("text/html", "");
+        genotypeText.setEditable(false);
+        genotypeText.setVisible(false);
         updateGenotypeText();
 
         this.add(slow);
@@ -150,6 +154,7 @@ public class UserPanel extends JPanel {
                 }
                 text += "</tr></table>";
                 genotypeText.setText(text);
+                genotypeText.setVisible(true);
             }
         });
     }
