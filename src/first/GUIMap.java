@@ -2,19 +2,24 @@ package first;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GUIMap extends JPanel
 {
-    private RectangularMap map;
+    public RectangularMap map;
     public final int NUM_ROWS;
     public final int NUM_COLS;
     private int startEne;
+    private GUI gui;
     private final Color[][] terrainGrid;
 
     public static final int PREFERRED_GRID_SIZE_PIXELS=13;
 
-    public GUIMap(RectangularMap map){
+    public GUIMap(RectangularMap map, AtomicBoolean paused, GUI gui){
         this.map = map;
+        this.gui = gui;
         this.NUM_COLS = map.width;
         this.NUM_ROWS = map.height;
         this.startEne = map.startEnergy;
@@ -22,8 +27,33 @@ public class GUIMap extends JPanel
         int preferredWidth = NUM_COLS * PREFERRED_GRID_SIZE_PIXELS;
         int preferredHeight = NUM_ROWS * PREFERRED_GRID_SIZE_PIXELS;
         setPreferredSize(new Dimension(preferredWidth, preferredHeight));
-
         updateMap();
+        GUIMap thisMap =this;
+        addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                if(paused.get()) {
+                    if(gui.map.spiedAnimal != null)
+                        gui.map.spiedAnimal = null;
+                    else if(gui.map1.spiedAnimal != null)
+                        gui.map1.spiedAnimal = null;
+
+                    Point clickedPoint = MouseInfo.getPointerInfo().getLocation();
+                    Point mapPoint = thisMap.getLocationOnScreen();
+                    clickedPoint.translate(- mapPoint.x, - mapPoint.y);
+                    Vector2d location = new Vector2d(clickedPoint.x/PREFERRED_GRID_SIZE_PIXELS, NUM_ROWS-clickedPoint.y/PREFERRED_GRID_SIZE_PIXELS-1);
+                    // System.out.println("Vector of clicked "+location);
+                    // for(Animals animal: map.animals)
+                        // System.out.println(animal.getPosition());
+                    if(map.containsAnimal(location)){
+                        // System.out.println(map.getAnimal(location));
+                        map.spiedAnimal = new SpiedAnimal(map.getAnimal(location));
+                        gui.userPanel.updateGenotypeText();
+                        gui.dataPanel.update();
+                        gui.setVisible(true);
+                    }
+                }
+            }
+        });
     }
 
     public void updateMap(){

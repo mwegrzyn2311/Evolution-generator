@@ -21,6 +21,8 @@ public class RectangularMap{
     private int jungleArea;
     private int outsideJungleArea;
     private int day=0;
+    public SpiedAnimal spiedAnimal = null;
+
     public DataCollector data;
 
     public RectangularMap(int width, int height, int startEnergy, int moveEnergy, int plantEnergy, double jungleRatio){
@@ -63,7 +65,6 @@ public class RectangularMap{
     }
 
     private void removeTheDead(){
-        //returns false if every animal is dead
         if(animals.size()==0){
             return;
         }
@@ -75,6 +76,12 @@ public class RectangularMap{
                 animals.remove(deadAnimal);
                 this.data.deadAnimalsCount++;
                 this.data.summaryDeathAge += deadAnimal.age;
+            }
+        }
+        if(this.spiedAnimal != null) {
+            if (this.spiedAnimal.deathDay == -1) {
+                if (!this.animals.contains(spiedAnimal.animal))
+                    spiedAnimal.deathDay = this.day;
             }
         }
     }
@@ -242,8 +249,8 @@ public class RectangularMap{
         Genotype genotype = new Genotype(mother.getGenotype(), father.getGenotype());
         Vector2d position = findEmptyPosition(mother.getPosition());
         this.placeAnimal(new Animals(this, position, genotype, babyEnergy, mother.startEnergy));
-        mother.childrenCounter++;
-        father.childrenCounter++;
+        mother.childrenCount++;
+        father.childrenCount++;
     }
 
     private void breedAll(){
@@ -351,10 +358,21 @@ public class RectangularMap{
     public boolean containsAnimal(Vector2d position){
         return (animalz.get(position)!=null && animalz.get(position).size()!=0);
     }
+    public boolean containsDominantAnimal(Vector2d position){
+        if(!containsAnimal(position))
+            return false;
+        ArrayList<Animals> animalsList = animalz.get(position);
+        int dominantGene = this.data.getDominatingGene();
+        for(Animals animal: animalsList){
+            if(animal.getDominantGene() == dominantGene)
+                return true;
+        }
+        return false;
+    }
 
     public int getMaxEneFromTile(Vector2d position){
         ArrayList<Animals> animals = animalz.get(position);
-        int ene = 0;
+        int ene = -1;
         if(animals == null)
             return ene;
         for(Animals animal: animals){
@@ -362,6 +380,28 @@ public class RectangularMap{
                 ene = animal.energy;
         }
         return ene;
+    }
+
+    Animals getMaxEneAnimal(Vector2d position){
+        ArrayList<Animals> animals = animalz.get(position);
+        if(animals == null)
+            return null;
+        int maxEne = -1;
+        Animals animal = null;
+        for(Animals tmp:animals){
+            if(tmp.energy > maxEne){
+                maxEne = tmp.energy;
+                animal = tmp;
+            }
+        }
+        return animal;
+    }
+
+    Animals getAnimal(Vector2d position){
+        if(!containsAnimal(position))
+            return null;
+        else
+            return getMaxEneAnimal(position);
     }
 
     Object objectAt(Vector2d position){

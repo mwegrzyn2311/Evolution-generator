@@ -50,7 +50,7 @@ public class DataCollector {
     public float getAverageChildrenCount(){
         int sum = 0;
         for(Animals animal: this.map.animals){
-            sum += animal.childrenCounter;
+            sum += animal.childrenCount;
         }
         return (sum/(float)this.map.animals.size());
     }
